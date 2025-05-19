@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blackjack Card Counter</title>
+        <link rel="stylesheet" href="popup.css">
+    </head>
+    <body>
+        <div id="deckInputScreen">
+            <h2>Number of Decks: </h2>
+            <input type="number" id="deckInput" min="1">
+            <button id="startBtn">Start</button>
+        </div>
+        <div id="counterScreen" style="display:none">
+            <div class="top-bar">
+                <button id="undoBtn">Undo</button>
+                <button id="resetBtn">Undo</button>
+            </div>
+            <div class="counts">
+                <p><strong>Running Count:</strong> <span id = "runningCount">0</span></p>
+                <p><strong>True Count:</strong> <span id = "trueCount">0</span></p>
+                <p><strong>Cards Seen:</strong> <span id = "runningCount">0</span></p>
+                <p><strong>Bet Suggestion:</strong> <span id = "betSuggestion">N/A</span></p>
+            </div>
+            <div class="buttons">
+                <button id="incrementBtn">+1 (2-6)</button>
+                <button id="zeroBtn">0 (7-9)</button>
+                <button id="decrementBtn">-1 (10-A)</button>
+            </div>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>
