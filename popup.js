@@ -95,8 +95,8 @@ function updateDisplay() {
     cardsSeenSpan.textContent = cardsSeen;
     
     const decksRemaining = Math.max(decks - cardsSeen/52, 0.25);
-    const trueCount = Math.floor(runningCount/decksRemaining);
-    trueCountSpan.textContent = isNaN(trueCount) ? 0 : trueCount;
+    const trueCount = runningCount/decksRemaining;
+    trueCountSpan.textContent = isNaN(trueCount) ? 0 : trueCount.toFixed(2);
 
     //Suggestion implementation
     let suggestion = "N/A";
