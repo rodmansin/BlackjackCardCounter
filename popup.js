@@ -11,8 +11,8 @@ const deckInput = document.getElementById("deckInput");
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
 const undoBtn = document.getElementById("undoBtn");
-const plusBtn = document.getElementById("plusBtn");
-const minusBtn = document.getElementById("minusBtn");
+const incrementBtn = document.getElementById("incrementBtn");
+const decrementBtn = document.getElementById("decrementBtn");
 const zeroBtn = document.getElementById("zeroBtn");
 
 // Game variables
@@ -22,10 +22,10 @@ let cardsSeen = 0;
 let history = [];   //For undo button (not saved in session)
 
 //Restore previous session data (if it exists)
-if (sessionStorage.getItem("runningCount") !== null && sessionStorage.getItem("decks") !== null) {
-    runningCount = parseInt(sessionStorage.getItem("runningCount"));
-    decks = parseInt(sessionStorage.getItem("decks"));
-    cardsSeen = parseInt(sessionStorage.getItem("cardsSeen"));
+if (localStorage.getItem("runningCount") !== null && localStorage.getItem("decks") !== null) {
+    runningCount = parseInt(localStorage.getItem("runningCount"));
+    decks = parseInt(localStorage.getItem("decks"));
+    cardsSeen = parseInt(localStorage.getItem("cardsSeen"));
     showCounterScreen();
     updateDisplay();
 }
@@ -39,16 +39,16 @@ startBtn.onclick = () => {
         runningCount = 0;
         cardsSeen = 0;
         history = [];
-        sessionStorage.setItem("decks", decks);
-        sessionStorage.setItem("runningCount", runningCount);
-        sessionStorage.setItem("cardsSeen", cardsSeen);
+        localStorage.setItem("decks", decks);
+        localStorage.setItem("runningCount", runningCount);
+        localStorage.setItem("cardsSeen", cardsSeen);
         showCounterScreen();
         updateDisplay();
     }
 };
 
 resetBtn.onclick = () => {
-    sessionStorage.clear();
+    localStorage.clear();
     runningCount = 0;
     decks = null;
     cardsSeen = 0;
@@ -61,17 +61,17 @@ undoBtn.onclick = () => {
     if (history.length > 0) {
         runningCount -= history.pop();
         cardsSeen = Math.max(0, cardsSeen - 1);
-        sessionStorage.setItem("runningCount", runningCount);
-        sessionStorage.setItem("cardsSeen", cardsSeen);
+        localStorage.setItem("runningCount", runningCount);
+        localStorage.setItem("cardsSeen", cardsSeen);
         updateDisplay();
     }
 };
 
-plusBtn.onclick = () => {
+incrementBtn.onclick = () => {
     addCard(1);
 };
 
-minusBtn.onclick = () => {
+decrementBtn.onclick = () => {
     addCard(-1);
 };
 
@@ -83,8 +83,8 @@ function addCard(value) {
     runningCount += value;
     cardsSeen++;
     history.push(value);
-    sessionStorage.setItem("runningCount", runningCount);
-    sessionStorage.setItem("cardsSeen", cardsSeen);
+    localStorage.setItem("runningCount", runningCount);
+    localStorage.setItem("cardsSeen", cardsSeen);
     updateDisplay();
 };
 
@@ -107,7 +107,7 @@ function updateDisplay() {
         color = "red";
     } else if (trueCount <= 2) {
         suggestion = "Small bet";
-        color = "yellow"
+        color = "yellow";
     } else if (trueCount <= 5) {
         suggestion = "Raise bet";
         color = "green";
