@@ -6,7 +6,7 @@ A simple and user-friendly Chrome extension that helps Blackjack players keep tr
 ## Features
 - **Deck Setup**: Input the number of decks at the start
 - **Card Value Buttons**: Add cards by count category (2–6, 7–9, 10–A)
-- **Live Tracking**: Displays running count, true Count (adjusted for decks remaining), number of cards seen
+- **Live Tracking**: Displays running count, true count (adjusted for decks remaining), number of cards seen
 - **Bet Suggestions**: Basic advice based on true count range
 - **Undo & Reset**: Remove last entry or restart session
 - **Session Persistence**: Remembers progress using local storage
